@@ -1,0 +1,14 @@
+[Unit]
+Description=OCR Pipeline (Docker)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker exec openchamber-pi4-sbc-02 python3 /home/ubuntu/workspaces/OCR_pipeline/run.py
+StandardOutput=journal
+StandardError=journal
+TimeoutStartSec=300
+
+[Install]
+WantedBy=multi-user.target

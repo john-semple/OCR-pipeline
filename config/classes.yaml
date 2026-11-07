@@ -1,0 +1,72 @@
+# Pipeline configuration: paths + settings.
+#
+# CLASSES now live in the vault at:
+#   Resources/Homework and Class Notes/Classes.md
+# (one "Class Name: keyword, keyword" line per class — editable in
+# Obsidian, synced to your phone; class folders are auto-created).
+#
+# The `classes:` section below is only a FALLBACK, used when Classes.md
+# is missing or has no class lines. Editing Classes.md is the normal
+# way to add or tune classes.
+
+# Pipeline-wide settings.
+settings:
+  grouping_window_minutes: 30   # multi-page grouping: max gap between first
+                                 # and last page in a group, by capture time
+  archive_retention_days: 365    # prune Archive/ older than this (weekly cron)
+  spend_log: logs/spend.csv      # per-page cost tracking
+
+# Filesystem paths. Override any of these with an env var of the same
+# name (e.g. OCR_VAULT_ROOT) for testing or alternate deployments.
+paths:
+  vault_root: /home/ubuntu/Vault
+  homework_subdir: Resources/Homework and Class Notes
+  inbox_subdir: 00 Inbox
+  pipeline_subdir: 00 Pipeline
+  processing_subdir: Processing
+  groups_subdir: groups
+  archive_subdir: Archive
+  unsorted_subdir: Unsorted
+  manual_retry_subdir: Manual Retry
+  failed_subdir: Failed
+  # OpenScan inbox (syncthing mount). The pipeline reads PDFs from here
+  # and moves them into the vault's Processing/ folder. If empty, the
+  # vault's 00 Inbox/ folder is used instead.
+  openscan_inbox: /mnt/openscan-inbox
+  # Stability check: a file must be unchanged in size for this many
+  # seconds before Stage 0 picks it up (guards against half-synced files).
+  stability_seconds: 5
+
+classes:
+  - name: Thermodynamics & Lab
+    folder: Resources/Homework and Class Notes/Thermodynamics & Lab
+    aliases:
+      - thermo
+      - thermodynamics
+      - thermodynamics & lab
+      - thermodynamics and lab
+      - thermodynmics   # common misspelling your OCR may reproduce
+      - me 301
+      - me301
+
+  - name: Structures and Properties of Materials
+    folder: Resources/Homework and Class Notes/Structures and Properties of Materials
+    aliases:
+      - structures and properties of materials
+      - structures & properties of materials
+      - structures and properties
+      - materials
+      - properties of materials
+      - mse xxx           # TODO: replace with real course code once known
+      - structures
+
+  - name: Circuits
+    folder: Resources/Homework and Class Notes/Circuits
+    aliases:
+      - circuits
+      - circuit
+      - ee xxx            # TODO: replace with real course code once known
+      - circuit analysis
+      - electric circuits
+
+  # Add more classes here.

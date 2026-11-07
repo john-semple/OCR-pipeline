@@ -1,0 +1,9 @@
+[Unit]
+Description=Run OCR Pipeline every 10 minutes
+
+[Timer]
+OnCalendar=*:0/10
+Unit=ocr-pipeline.service
+
+[Install]
+WantedBy=timers.target
